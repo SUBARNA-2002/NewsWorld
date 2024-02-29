@@ -5,6 +5,7 @@ const HomeScreen = () => {
   return (
     <View>
       <Text>HomeScreen</Text>
+      <Text>he</Text>
     </View>
   )
 }
