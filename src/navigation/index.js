@@ -12,6 +12,7 @@ import NewsDetailsScreen from "../screens/NewsDetailsScreen";
 import SpalshScreen from "../screens/SpalshScreen";
 import Welcome from "../screens/Welcome";
 import Ionicons from "react-native-vector-icons/Ionicons";
+import NewsList from "../screens/NewsList";
 
 const Tab = createBottomTabNavigator();
 const Stack = createNativeStackNavigator();
@@ -71,18 +72,21 @@ const AppNavigation = () => {
   return (
     <NavigationContainer>
       <Stack.Navigator
-        initialRouteName="HomeTabs"
-        options={{ headerShown: false }}
+        initialRouteName="Spalsh"
+        // screenOptions={{
+        //   headerShown: false,
+        // }}
       >
         <Stack.Screen name="Spalsh" component={SpalshScreen} />
-        <Stack.Screen name="Welcome" component={Welcome} />
+        <Stack.Screen name="Welcome" component={Welcome}  />
         <Stack.Screen name="Search" component={SearchScreen} />
-        <Stack.Screen name="HomeTabs" component={TabNavigation} />
+        <Stack.Screen name="HomeTabs" component={TabNavigation} options={{headerShown:false}} />
         <Stack.Screen
           name="NewsDetail"
           component={NewsDetailsScreen}
-          options={{ animation: "slide_from_right" }}
+          options={{ animation: "slide_from_bottom" ,headerShown:false}}
         />
+        <Stack.Screen name="NewsList" component={NewsList} options={{ headerShown: false}}/>
       </Stack.Navigator>
     </NavigationContainer>
   );
