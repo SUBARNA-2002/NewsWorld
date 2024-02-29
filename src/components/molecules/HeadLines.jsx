@@ -70,7 +70,7 @@ const HeadLines = () => {
       <View className="flex-row w-full  ">
         {data.map((item, index) => (
           <Animated.Text
-            className="text-lg mx-4  "
+            className="text-xl py-1 mx-4  "
             key={item.id}
             style={[
               {

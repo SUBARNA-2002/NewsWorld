@@ -26,20 +26,28 @@ const NewsList = ({ route }) => {
     </View>
   );
 };
-const RenderItem = ({ item }) => (
-  <View className="my-2 w-full  ">
-    <View className="flex-row gap-2    ">
-      <Image className="h-28 w-28 rounded-md" source={{ uri: item.image }} />
-      <View className=" w-[64vw] ">
-        <Text numberOfLines={2} className="text-lg">
-          {item.title}
-        </Text>
-        <Text className="py-2 text-sm" numberOfLines={2}>
-          {item.description}
-        </Text>
+const RenderItem = ({ item }) => {
+  const navigate = useNavigation();
+  return (
+    <TouchableOpacity onPress={() => navigate.navigate("NewsDetail")}>
+      <View className="my-2 w-full  ">
+        <View className="flex-row gap-2    ">
+          <Image
+            className="h-28 w-28 rounded-md"
+            source={{ uri: item.image }}
+          />
+          <View className=" w-[64vw] ">
+            <Text numberOfLines={2} className="text-lg">
+              {item.title}
+            </Text>
+            <Text className="py-2 text-sm" numberOfLines={2}>
+              {item.description}
+            </Text>
+          </View>
+        </View>
       </View>
-    </View>
-  </View>
-);
+    </TouchableOpacity>
+  );
+};
 
 export default NewsList;

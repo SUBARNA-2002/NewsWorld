@@ -7,26 +7,29 @@ import TrendingNews from "../components/molecules/TrendingNews";
 import International from "../components/molecules/International";
 import State from "../components/molecules/State";
 const HomeScreen = () => {
-  const data=[
+  const data = [
     {
-      name:"Trending News",
-      component:<TrendingNews/>
+      name: "Trending News",
+      component: <TrendingNews />,
     },
     {
-      name:"International",
-      component:<International/>
+      name: "International",
+      component: <International />,
     },
     {
-      name:"State",
-      component:<State/>
-    }
-  ]
+      name: "State",
+      component: <State />,
+    },
+  ];
   return (
-    <View className='mt-10'>
-      <View className=" px-3 flex-1 py-1 ">
+    <View className="pt-10">
+      <View className=" px-3  py-1 ">
         <View className=" flex-row justify-between items-center px-1 ">
           <View className="bg-white  px-2 py-2 shadow-md rounded-md">
-            <Ionicons name="menu-outline" size={30} color="black" />
+            <Ionicons name="menu-sharp" size={30} color="black" />
+          </View>
+          <View>
+            <Text className="text-2xl font-bold">LOGO</Text>
           </View>
           <View className="bg-white px-2 py-2 shadow-md rounded-md">
             <Ionicons name="notifications-outline" size={30} color="black" />

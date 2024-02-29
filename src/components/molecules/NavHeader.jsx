@@ -1,21 +1,29 @@
-import { View, Text, FlatList } from "react-native";
+import { useNavigation } from "@react-navigation/core";
+import { View, Text, FlatList, TouchableOpacity } from "react-native";
 
 const Tab = ({ title }) => {
+  const navigate = useNavigation();
   return (
-    <View className="bg-red-600 rounded-md mx-1 my-3">
-      <Text className="px-2 py-1 text-sm text-white uppercase font-semibold">{title}</Text>
-    </View>
+    <TouchableOpacity
+      onPress={() => navigate.navigate("NewsList", { heading: title })}
+    >
+      <View className="bg-red-600 rounded-md mx-1 my-3">
+        <Text className="px-2 py-2 text-md text-white uppercase font-semibold">
+          {title}
+        </Text>
+      </View>
+    </TouchableOpacity>
   );
 };
 
 const NavHeader = () => {
   const data = [
-    { title: "Latest" },
+    { title: "Trending" },
     { title: "International" },
     { title: "National" },
     { title: "State" },
     { title: "Entertainment" },
-    { title: "Special Story" },
+    { title: "SpecialStory" },
     { title: "Health" },
     { title: "Art & Culture" },
   ];

@@ -1,22 +1,28 @@
-import { View, Text, FlatList, Image } from "react-native";
+import { View, Text, FlatList, Image, TouchableOpacity } from "react-native";
 import React from "react";
+import { useNavigation } from "@react-navigation/core";
 
 const NewsCard = ({ data }) => {
+  const navigate = useNavigation();
   const RenderItem = ({ item }) => (
-    <View className="my-2 w-full  ">
-      <View className="flex-row gap-2    ">
-        <Image className="h-28 w-28 rounded-md" source={{ uri: item.image }} />
-        <View className=" w-[64vw] ">
-          <Text numberOfLines={2} className="text-lg">
-            {item.title}
-          </Text>
-          <Text className="py-2 text-sm" numberOfLines={2}>
-            {item.description}
-          </Text>
+    <TouchableOpacity onPress={() => navigate.navigate("NewsDetail")}>
+      <View className="my-2 w-full  ">
+        <View className="flex-row gap-2    ">
+          <Image
+            className="h-28 w-28 rounded-md"
+            source={{ uri: item.image }}
+          />
+          <View className=" w-[64vw] ">
+            <Text numberOfLines={2} className="text-lg">
+              {item.title}
+            </Text>
+            <Text className="py-2 text-sm" numberOfLines={2}>
+              {item.description}
+            </Text>
+          </View>
         </View>
       </View>
-      {/* Add more fields as needed */}
-    </View>
+    </TouchableOpacity>
   );
 
   return (
