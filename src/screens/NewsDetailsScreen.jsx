@@ -21,13 +21,24 @@ const NewsDetailsScreen = () => {
   const { isDarkMode } = React.useContext(DarkModeContext);
   // const { isDarkMode } = React.useContext(DarkModeContext);
   const headline =
-    "The best way to invest in stocks The best way to invest in stocks";
-  const description = `Lorem, ipsum dolor sit amet consectetur adipisicing elit. Ut accusamus
-  obcaecati nostrum saepe voluptatem minus autem perferendis sint nulla,
-  quas rerum iure ad voluptatibus. Quaerat, velit! Ipsa perferendis eos
+    "Anant Ambani, Radhika Merchant pre wedding live: Check out video of glamorous tent accommodation for guests";
+  const description = `Lorem, ipsum dolor sit amet consectetur adipisicing elit. Ut
+  accusamus obcaecati nostrum saepe voluptatem minus autem perferendis
+  sint nulla, quas rerum iure ad voluptatibus. Quaerat, velit! Ipsa
+  perferendis eos enim? Lorem ipsum dolor sit, amet consectetur
+  adipisicing elit. Vero doloremque, maxime nesciunt asperiores
+  similique qui cupiditate eos laborum minus doloribus! Lorem, ipsum
+  dolor sit amet consectetur adipisicing elit. Ut accusamus obcaecati
+  nostrum saepe voluptatem minus autem perferendis sint nulla, quas
+  rerum iure ad voluptatibus. Quaerat, velit! Ipsa perferendis eos
   enim? Lorem ipsum dolor sit, amet consectetur adipisicing elit. Vero
   doloremque, maxime nesciunt asperiores similique qui cupiditate eos
-  laborum minus doloribus!`;
+  laborum minus doloribus! Lorem, ipsum dolor sit amet consectetur
+  adipisicing elit. Ut accusamus obcaecati nostrum saepe voluptatem
+  minus autem perferendis sint nulla, quas rerum iure ad voluptatibus.
+  Quaerat, velit! Ipsa perferendis eos enim? Lorem ipsum dolor sit,
+  amet consectetur adipisicing elit. Vero doloremque, maxime nesciunt
+  asperiores similique qui cupiditate eos laborum minus doloribus!`;
 
   const handlePress = () => {
     if (isSpeaking) {
@@ -119,8 +130,7 @@ const NewsDetailsScreen = () => {
               isDarkMode === "dark" ? "text-white/70" : "text-black"
             } `}
           >
-            Anant Ambani, Radhika Merchant pre wedding live: Check out video of
-            glamorous tent accommodation for guests
+            {headline}
           </Text>
           <View className="flex-row justify-between items-center mt-4 ">
             <Text className="px-2 py-2 bg-red-600 text-white rounded">
@@ -147,23 +157,7 @@ const NewsDetailsScreen = () => {
               isDarkMode === "dark" ? "text-white/70" : "text-black"
             } `}
           >
-            Lorem, ipsum dolor sit amet consectetur adipisicing elit. Ut
-            accusamus obcaecati nostrum saepe voluptatem minus autem perferendis
-            sint nulla, quas rerum iure ad voluptatibus. Quaerat, velit! Ipsa
-            perferendis eos enim? Lorem ipsum dolor sit, amet consectetur
-            adipisicing elit. Vero doloremque, maxime nesciunt asperiores
-            similique qui cupiditate eos laborum minus doloribus! Lorem, ipsum
-            dolor sit amet consectetur adipisicing elit. Ut accusamus obcaecati
-            nostrum saepe voluptatem minus autem perferendis sint nulla, quas
-            rerum iure ad voluptatibus. Quaerat, velit! Ipsa perferendis eos
-            enim? Lorem ipsum dolor sit, amet consectetur adipisicing elit. Vero
-            doloremque, maxime nesciunt asperiores similique qui cupiditate eos
-            laborum minus doloribus! Lorem, ipsum dolor sit amet consectetur
-            adipisicing elit. Ut accusamus obcaecati nostrum saepe voluptatem
-            minus autem perferendis sint nulla, quas rerum iure ad voluptatibus.
-            Quaerat, velit! Ipsa perferendis eos enim? Lorem ipsum dolor sit,
-            amet consectetur adipisicing elit. Vero doloremque, maxime nesciunt
-            asperiores similique qui cupiditate eos laborum minus doloribus!
+            {description}
           </Text>
         </View>
       </ScrollView>
