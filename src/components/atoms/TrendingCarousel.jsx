@@ -1,8 +1,11 @@
 import { useNavigation } from "@react-navigation/native";
+import React from "react";
 import { View, Dimensions, Text, Image, TouchableOpacity } from "react-native";
 import Carousel from "react-native-snap-carousel";
+import { DarkModeContext } from "../../context/DarkModeContext";
 
 const TrendingCarousel = ({ data }) => {
+
   const { width: viewportWidth } = Dimensions.get("window");
   return (
     <Carousel
@@ -21,6 +24,8 @@ const TrendingCarousel = ({ data }) => {
 
 const RenderItem = ({ item }) => {
   const navigate=useNavigation()
+  const { isDarkMode } = React.useContext(DarkModeContext);
+
 
   // console.log("item====>>>>", item);
   return (
@@ -34,7 +39,7 @@ const RenderItem = ({ item }) => {
           State
         </Text>
       </View>
-      <Text numberOfLines={2} className="text-xl py-1">
+      <Text numberOfLines={2} className={`text-xl py-1 ${isDarkMode==="dark"?"text-white/70":"text-black"}`}>
         {item.title}
       </Text>
      

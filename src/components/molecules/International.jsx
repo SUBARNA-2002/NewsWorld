@@ -3,8 +3,11 @@ import React from "react";
 import NewsCard from "../atoms/NewsCard";
 import { TouchableOpacity } from "react-native";
 import { useNavigation } from "@react-navigation/native";
+import { DarkModeContext } from "../../context/DarkModeContext";
 
 const International = () => {
+  const { isDarkMode } = React.useContext(DarkModeContext);
+
   const navigate = useNavigation();
 
   const data = [
@@ -40,10 +43,21 @@ const International = () => {
   return (
     <View className="px-3">
       <View className="flex-row justify-between items-center">
-        <Text className="text-2xl font-medium">
+        <Text
+          className={`text-2xl font-medium ${
+            isDarkMode === "dark" ? "text-white/70" : "text-black"
+          }`}
+        >
           <Text className="text-red-600">International</Text> News
         </Text>
-        <TouchableOpacity onPress={() => navigate.navigate('NewsList', {data: data,heading:'International'})}>
+        <TouchableOpacity
+          onPress={() =>
+            navigate.navigate("NewsList", {
+              data: data,
+              heading: "International",
+            })
+          }
+        >
           <Text className="text-md text-zinc-500">See all</Text>
         </TouchableOpacity>
       </View>

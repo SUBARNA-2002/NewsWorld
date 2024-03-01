@@ -1,8 +1,11 @@
 import { View, Text, FlatList, Image, TouchableOpacity } from "react-native";
 import React from "react";
 import { useNavigation } from "@react-navigation/core";
+import { DarkModeContext } from "../../context/DarkModeContext";
 
 const NewsCard = ({ data }) => {
+  const { isDarkMode } = React.useContext(DarkModeContext);
+
   const navigate = useNavigation();
   const RenderItem = ({ item }) => (
     <TouchableOpacity onPress={() => navigate.navigate("NewsDetail")}>
@@ -13,10 +16,10 @@ const NewsCard = ({ data }) => {
             source={{ uri: item.image }}
           />
           <View className=" w-[64vw] ">
-            <Text numberOfLines={2} className="text-lg">
+            <Text numberOfLines={2} className={`text-lg ${isDarkMode==="dark"?"text-white/70":"text-black"}`}>
               {item.title}
             </Text>
-            <Text className="py-2 text-sm" numberOfLines={2}>
+            <Text className={`py-2 text-sm ${isDarkMode==="dark"?"text-white/70":"text-black"}`} numberOfLines={2}>
               {item.description}
             </Text>
           </View>

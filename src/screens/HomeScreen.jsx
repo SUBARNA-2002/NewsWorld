@@ -6,7 +6,11 @@ import HeadLines from "../components/molecules/HeadLines";
 import TrendingNews from "../components/molecules/TrendingNews";
 import International from "../components/molecules/International";
 import State from "../components/molecules/State";
+import { DarkModeContext } from "../context/DarkModeContext";
 const HomeScreen = () => {
+  // const { isDarkMode } = route.params;
+  const { isDarkMode } = React.useContext(DarkModeContext);
+
   const data = [
     {
       name: "Trending News",
@@ -22,7 +26,7 @@ const HomeScreen = () => {
     },
   ];
   return (
-    <View className="pt-10">
+    <View className={`py-10 ${isDarkMode==='dark'?"bg-black/90":"bg-slate-200"} `}>
       <View className=" px-3  py-1 ">
         <View className=" flex-row justify-between items-center px-1 ">
           <View className="bg-white  px-2 py-2 shadow-md rounded-md">

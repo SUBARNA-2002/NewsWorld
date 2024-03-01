@@ -13,11 +13,13 @@ import { Entypo } from "@expo/vector-icons";
 import { AntDesign } from "@expo/vector-icons";
 import * as Speech from "expo-speech";
 import { BackHandler } from "react-native";
+import { DarkModeContext } from "../context/DarkModeContext";
 
 const NewsDetailsScreen = () => {
   const navigate = useNavigation();
   const [isSpeaking, setIsSpeaking] = useState(false);
-
+  const { isDarkMode } = React.useContext(DarkModeContext);
+  // const { isDarkMode } = React.useContext(DarkModeContext);
   const headline =
     "The best way to invest in stocks The best way to invest in stocks";
   const description = `Lorem, ipsum dolor sit amet consectetur adipisicing elit. Ut accusamus
@@ -71,61 +73,101 @@ const NewsDetailsScreen = () => {
   }, []);
 
   return (
-    <ScrollView className="mt-10 px-3">
+    <View
+      className={`pt-10  px-3 ${
+        isDarkMode === "dark" ? "bg-black/90" : " bg-slate-200"
+      }`}
+    >
       <View className="flex-row justify-between">
         <View>
           <TouchableOpacity onPress={handleBack}>
-            <Ionicons name="arrow-back-outline" size={25} color="black" />
+            <Ionicons
+              name="arrow-back-outline"
+              size={25}
+              color={isDarkMode === "light" ? "black" : "white"}
+            />
           </TouchableOpacity>
         </View>
         <View className="flex-row items-center gap-5">
           <TouchableOpacity onPress={handlePress}>
             <AntDesign
               name={isSpeaking ? "pause" : "sound"}
-              size={24}
-              color="black"
+              size={25}
+              color={isDarkMode === "light" ? "black" : "white"}
             />
           </TouchableOpacity>
           <TouchableOpacity onPress={handleShare}>
-            <AntDesign name="sharealt" size={24} color="black" />
+            <AntDesign
+              name="sharealt"
+              size={24}
+              color={isDarkMode === "light" ? "black" : "white"}
+            />
           </TouchableOpacity>
           <TouchableOpacity>
-            <Entypo name="dots-three-vertical" size={22} color="black" />
+            <Entypo
+              name="dots-three-vertical"
+              size={22}
+              color={isDarkMode === "light" ? "black" : "white"}
+            />
           </TouchableOpacity>
         </View>
       </View>
-      <View className="py-3 mt-3">
-        <Text className="text-2xl font-semibold">
-          The best way to invest in stocks The best way to invest in stocks
-        </Text>
-        <View className="flex-row justify-between items-center mt-4 ">
-          <Text className="px-2 py-2 bg-red-600 text-white rounded">State</Text>
-
-          <View className="flex-row gap-3">
-            <Text className="text-sm text-zinc-500 font-medium">Admin</Text>
-            <Text className="text-sm text-zinc-500 font-medium">
-              29-02-2024
+      <ScrollView>
+        <View className="pb-10 mt-3">
+          <Text
+            className={`text-2xl font-semibold ${
+              isDarkMode === "dark" ? "text-white/70" : "text-black"
+            } `}
+          >
+            Anant Ambani, Radhika Merchant pre wedding live: Check out video of
+            glamorous tent accommodation for guests
+          </Text>
+          <View className="flex-row justify-between items-center mt-4 ">
+            <Text className="px-2 py-2 bg-red-600 text-white rounded">
+              State
             </Text>
+
+            <View className="flex-row gap-3">
+              <Text className="text-sm text-zinc-500 font-medium">Admin</Text>
+              <Text className="text-sm text-zinc-500 font-medium">
+                29-02-2024
+              </Text>
+            </View>
           </View>
+          <View className="h-[50vh] w-full mt-5 ">
+            <Image
+              style={{ height: "100%", width: "100%", objectFit: "fill" }}
+              source={{
+                uri: "https://www.maharaniwomen.com/wp-content/uploads/2021/09/A2.jpg",
+              }}
+            />
+          </View>
+          <Text
+            className={`py-5 text-xl text-justify ${
+              isDarkMode === "dark" ? "text-white/70" : "text-black"
+            } `}
+          >
+            Lorem, ipsum dolor sit amet consectetur adipisicing elit. Ut
+            accusamus obcaecati nostrum saepe voluptatem minus autem perferendis
+            sint nulla, quas rerum iure ad voluptatibus. Quaerat, velit! Ipsa
+            perferendis eos enim? Lorem ipsum dolor sit, amet consectetur
+            adipisicing elit. Vero doloremque, maxime nesciunt asperiores
+            similique qui cupiditate eos laborum minus doloribus! Lorem, ipsum
+            dolor sit amet consectetur adipisicing elit. Ut accusamus obcaecati
+            nostrum saepe voluptatem minus autem perferendis sint nulla, quas
+            rerum iure ad voluptatibus. Quaerat, velit! Ipsa perferendis eos
+            enim? Lorem ipsum dolor sit, amet consectetur adipisicing elit. Vero
+            doloremque, maxime nesciunt asperiores similique qui cupiditate eos
+            laborum minus doloribus! Lorem, ipsum dolor sit amet consectetur
+            adipisicing elit. Ut accusamus obcaecati nostrum saepe voluptatem
+            minus autem perferendis sint nulla, quas rerum iure ad voluptatibus.
+            Quaerat, velit! Ipsa perferendis eos enim? Lorem ipsum dolor sit,
+            amet consectetur adipisicing elit. Vero doloremque, maxime nesciunt
+            asperiores similique qui cupiditate eos laborum minus doloribus!
+          </Text>
         </View>
-        <View className="h-[50vh] w-full mt-5 ">
-          <Image
-            style={{ height: "100%", width: "100%", objectFit: "fill" }}
-            source={{
-              uri: "https://www.maharaniwomen.com/wp-content/uploads/2021/09/A2.jpg",
-            }}
-          />
-        </View>
-        <Text className="py-4 text-xl text-justify">
-          Lorem, ipsum dolor sit amet consectetur adipisicing elit. Ut accusamus
-          obcaecati nostrum saepe voluptatem minus autem perferendis sint nulla,
-          quas rerum iure ad voluptatibus. Quaerat, velit! Ipsa perferendis eos
-          enim? Lorem ipsum dolor sit, amet consectetur adipisicing elit. Vero
-          doloremque, maxime nesciunt asperiores similique qui cupiditate eos
-          laborum minus doloribus!
-        </Text>
-      </View>
-    </ScrollView>
+      </ScrollView>
+    </View>
   );
 };
 

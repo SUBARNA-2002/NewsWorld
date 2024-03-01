@@ -8,11 +8,12 @@ import {
 } from "react-native";
 import React from "react";
 import { useNavigation } from "@react-navigation/core";
+import { DarkModeContext } from "../../context/DarkModeContext";
 
 const Card = ({ data }) => {
   const { width: viewportWidth } = Dimensions.get("window");
   const itemWidth = viewportWidth * 0.65; // Adjust this value as needed
-
+  const { isDarkMode } = React.useContext(DarkModeContext);
   const RenderItem = ({ item }) => {
     const navigate = useNavigation();
     // console.log("item====>>>>", item);
@@ -24,7 +25,7 @@ const Card = ({ data }) => {
             source={{ uri: item.image }}
           />
 
-          <Text numberOfLines={2} className="text-md py-1">
+          <Text numberOfLines={2} className={`text-md py-1 ${isDarkMode==="dark"?"text-white/70":"text-black"}`}>
             {item.title}
           </Text>
         </View>

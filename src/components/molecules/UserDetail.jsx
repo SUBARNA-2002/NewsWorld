@@ -1,8 +1,11 @@
-import { View, Text, Image } from "react-native";
+import { View, Text, Image, TouchableOpacity } from "react-native";
 import React from "react";
-import Btn from "../atoms/Btn";
+import { DarkModeContext } from "../../context/DarkModeContext";
+import { useNavigation } from "@react-navigation/native";
 
 const UserDetail = () => {
+  const { isDarkMode } = React.useContext(DarkModeContext);
+  const navigate = useNavigation();
   return (
     <View>
       <View className="flex-row justify-center ">
@@ -15,21 +18,30 @@ const UserDetail = () => {
           />
         </View>
       </View>
-      <Text className=" text-center text-2xl pt-3 font-medium">
+      <Text
+        className={` text-center text-2xl pt-3 font-medium ${
+          isDarkMode === "dark" ? "text-white/70" : "text-black"
+        }`}
+      >
         Subarna Keshari Sutar
       </Text>
-      <Text className=" text-center text-xl ">subarna.sutar@squbix.com</Text>
+      <Text
+        className={`text-center text-lg  ${
+          isDarkMode === "dark" ? "text-white/70" : "text-black"
+        }`}
+      >
+        subarna.sutar@squbix.com
+      </Text>
       <View className="flex-row justify-center py-5">
-        <Text className="w-[45vw] py-3  rounded-3xl bg-red-500 text-white text-center text-xl">
-          Edit Profile
-        </Text>
+        <TouchableOpacity
+          onPress={() => navigate.navigate("editprofile")}
+        >
+          <Text className="w-[45vw] py-3  rounded-3xl bg-red-500 text-white text-center text-xl">
+            Edit Profile
+          </Text>
+        </TouchableOpacity>
       </View>
       <Text className="h-[1px]  bg-black/10 my-3 mx-3" />
-      <View >
-        <Btn icon="settings" title="Settings" />
-        <Btn icon="key" title="Change Password" />
-        <Btn icon="log-out" title="Logout" />
-      </View>
     </View>
   );
 };

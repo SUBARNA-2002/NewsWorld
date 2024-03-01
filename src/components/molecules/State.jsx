@@ -3,10 +3,12 @@ import { View, Text, TouchableOpacity } from "react-native";
 import { LogBox } from "react-native";
 import Card from "../atoms/Card";
 import { useNavigation } from "@react-navigation/native";
+import { DarkModeContext } from "../../context/DarkModeContext";
+import React from "react";
 
 const State = () => {
   LogBox.ignoreLogs(["ViewPropTypes"]);
-
+  const { isDarkMode } = React.useContext(DarkModeContext);
   const data = [
     {
       title: "The best way to invest in stocks",
@@ -43,7 +45,7 @@ const State = () => {
   return (
     <View className="py-1 px-3">
       <View className="flex-row justify-between items-center">
-        <Text className="text-2xl font-medium">
+      <Text className={`text-2xl font-medium ${isDarkMode==="dark"?"text-white/70":"text-black"}`}>
           <Text className="text-red-600">State</Text> News
         </Text>
         <TouchableOpacity onPress={() => navigate.navigate('NewsList', {data: data,heading:'State'})}>

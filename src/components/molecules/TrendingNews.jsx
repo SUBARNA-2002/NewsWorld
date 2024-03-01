@@ -4,9 +4,12 @@ import TrendingCarousel from "../atoms/TrendingCarousel";
 import { LogBox } from "react-native";
 import { TouchableOpacity } from "react-native";
 import { useNavigation } from "@react-navigation/native";
+import { DarkModeContext } from "../../context/DarkModeContext";
+import React from "react";
 
 const TrendingNews = () => {
   LogBox.ignoreLogs(["ViewPropTypes"]);
+  const { isDarkMode } = React.useContext(DarkModeContext);
 
   const data = [
     {
@@ -43,7 +46,7 @@ const TrendingNews = () => {
   return (
     <View className="py-3  px-3">
       <View className="flex-row justify-between items-center">
-        <Text className="text-2xl font-medium">
+        <Text className={`text-2xl font-medium ${isDarkMode==="dark"?"text-white/70":"text-black"}`}>
           <Text className="text-red-600">Trending</Text> News
         </Text>
         <TouchableOpacity onPress={() => navigate.navigate('NewsList', {data: data,heading:'Trending'})}>

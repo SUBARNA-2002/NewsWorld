@@ -7,8 +7,11 @@ import {
   Animated,
   Easing,
 } from "react-native";
+import { DarkModeContext } from "../../context/DarkModeContext";
 
 const HeadLines = () => {
+  const { isDarkMode } = React.useContext(DarkModeContext);
+
   const data = [
     {
       id: 1,
@@ -67,10 +70,10 @@ const HeadLines = () => {
       scrollEnabled={false}
       showsHorizontalScrollIndicator={false}
     >
-      <View className="flex-row w-full  ">
+      <View className="flex-row w-full ">
         {data.map((item, index) => (
           <Animated.Text
-            className="text-xl py-1 mx-4  "
+            className={`text-xl py-1 mx-4  ${isDarkMode==='dark'?"text-white/70":"text-black"} `}
             key={item.id}
             style={[
               {
