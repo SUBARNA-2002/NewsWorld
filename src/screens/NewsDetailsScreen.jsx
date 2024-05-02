@@ -14,31 +14,17 @@ import { AntDesign } from "@expo/vector-icons";
 import * as Speech from "expo-speech";
 import { BackHandler } from "react-native";
 import { DarkModeContext } from "../context/DarkModeContext";
+import { Linking } from "react-native";
 
-const NewsDetailsScreen = () => {
+const NewsDetailsScreen = ({ route }) => {
   const navigate = useNavigation();
+  const { newsItem } = route.params;
+
   const [isSpeaking, setIsSpeaking] = useState(false);
   const { isDarkMode } = React.useContext(DarkModeContext);
   // const { isDarkMode } = React.useContext(DarkModeContext);
-  const headline =
-    "Anant Ambani, Radhika Merchant pre wedding live: Check out video of glamorous tent accommodation for guests";
-  const description = `Lorem, ipsum dolor sit amet consectetur adipisicing elit. Ut
-  accusamus obcaecati nostrum saepe voluptatem minus autem perferendis
-  sint nulla, quas rerum iure ad voluptatibus. Quaerat, velit! Ipsa
-  perferendis eos enim? Lorem ipsum dolor sit, amet consectetur
-  adipisicing elit. Vero doloremque, maxime nesciunt asperiores
-  similique qui cupiditate eos laborum minus doloribus! Lorem, ipsum
-  dolor sit amet consectetur adipisicing elit. Ut accusamus obcaecati
-  nostrum saepe voluptatem minus autem perferendis sint nulla, quas
-  rerum iure ad voluptatibus. Quaerat, velit! Ipsa perferendis eos
-  enim? Lorem ipsum dolor sit, amet consectetur adipisicing elit. Vero
-  doloremque, maxime nesciunt asperiores similique qui cupiditate eos
-  laborum minus doloribus! Lorem, ipsum dolor sit amet consectetur
-  adipisicing elit. Ut accusamus obcaecati nostrum saepe voluptatem
-  minus autem perferendis sint nulla, quas rerum iure ad voluptatibus.
-  Quaerat, velit! Ipsa perferendis eos enim? Lorem ipsum dolor sit,
-  amet consectetur adipisicing elit. Vero doloremque, maxime nesciunt
-  asperiores similique qui cupiditate eos laborum minus doloribus!`;
+  const headline = newsItem?.title;
+  const description = newsItem?.description;
 
   const handlePress = () => {
     if (isSpeaking) {
@@ -85,11 +71,11 @@ const NewsDetailsScreen = () => {
 
   return (
     <View
-      className={`pt-10  px-3 ${
+      className={`flex-1 pt-12 px-3 ${
         isDarkMode === "dark" ? "bg-black/90" : " bg-slate-200"
       }`}
     >
-      <View className="flex-row justify-between">
+      <View className="flex-row justify-between pb-3">
         <View>
           <TouchableOpacity onPress={handleBack}>
             <Ionicons
@@ -123,7 +109,7 @@ const NewsDetailsScreen = () => {
           </TouchableOpacity>
         </View>
       </View>
-      <ScrollView>
+      <ScrollView showsVerticalScrollIndicator={false}>
         <View className="pb-10 mt-3">
           <Text
             className={`text-2xl font-semibold ${
@@ -134,21 +120,21 @@ const NewsDetailsScreen = () => {
           </Text>
           <View className="flex-row justify-between items-center mt-4 ">
             <Text className="px-2 py-2 bg-red-600 text-white rounded">
-              State
+              {newsItem?.source?.name}
             </Text>
 
             <View className="flex-row gap-3">
-              <Text className="text-sm text-zinc-500 font-medium">Admin</Text>
+              {/* <Text className="text-sm text-zinc-500 font-medium">Admin</Text> */}
               <Text className="text-sm text-zinc-500 font-medium">
-                29-02-2024
+                {new Date(newsItem?.publishedAt).toLocaleString()}
               </Text>
             </View>
           </View>
           <View className="h-[50vh] w-full mt-5 ">
             <Image
-              style={{ height: "100%", width: "100%", objectFit: "fill" }}
+              style={{ height: "100%", width: "100%", objectFit: "cover" }}
               source={{
-                uri: "https://www.maharaniwomen.com/wp-content/uploads/2021/09/A2.jpg",
+                uri: newsItem?.urlToImage,
               }}
             />
           </View>
@@ -159,6 +145,12 @@ const NewsDetailsScreen = () => {
           >
             {description}
           </Text>
+          <TouchableOpacity
+            className="bg-red-600 py-4 rounded-lg"
+            onPress={() => Linking.openURL(newsItem?.url)}
+          >
+            <Text className="text-center text-lg text-white">Read More</Text>
+          </TouchableOpacity>
         </View>
       </ScrollView>
     </View>

@@ -2,7 +2,7 @@ import React from "react";
 import { NavigationContainer } from "@react-navigation/native";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
-import { DarkModeProvider } from "../context/DarkModeContext";
+import { DarkModeContext, DarkModeProvider } from "../context/DarkModeContext";
 import { useColorScheme } from "nativewind";
 import HomeScreen from "../screens/HomeScreen";
 import SearchScreen from "../screens/SearchScreen";
@@ -24,6 +24,7 @@ const Stack = createNativeStackNavigator();
 const AppNavigation = () => {
   // const colorScheme = useColorScheme();
   // const isDarkMode = colorScheme === 'dark';
+  const { isDarkMode } = React.useContext(DarkModeContext);
 
   const TabNavigation = () => {
     return (
@@ -45,18 +46,21 @@ const AppNavigation = () => {
             return <Ionicons name={iconName} size={25} color={color} />;
           },
           tabBarActiveTintColor: "red",
-          tabBarInactiveTintColor: "black",
-          tabBarStyle: { display: "flex" },
-          tabBarShowLabel: false, // This line hides the tab labels
-
+          tabBarInactiveTintColor: "white",
+          tabBarStyle: {
+            backgroundColor: "black",
+            height: 60,
+            paddingTop: 0, // Add padding to the top
+            paddingBottom: 5,
+            // shadowColor: "white",
+          },
+          tabBarShowLabel: false,
         })}
       >
         <Tab.Screen
           name="Home"
           component={HomeScreen}
           options={{ headerShown: false }}
-          // initialParams={{ isDarkMode: colorScheme === 'dark' }}
-
         />
         <Tab.Screen
           name="Search"
@@ -81,26 +85,54 @@ const AppNavigation = () => {
     <DarkModeProvider>
       <NavigationContainer>
         <Stack.Navigator
-          initialRouteName="Spalsh"
+          initialRouteName="Welcome"
           // screenOptions={{
           //   headerShown: false,
           // }}
         >
-          <Stack.Screen name="Spalsh" component={SpalshScreen} />
-          <Stack.Screen name="Welcome" component={Welcome}  />
+          {/* <Stack.Screen name="Spalsh" component={SpalshScreen} /> */}
+          <Stack.Screen
+            name="Welcome"
+            component={Welcome}
+            options={{ headerShown: false }}
+          />
           <Stack.Screen name="Search" component={SearchScreen} />
           <Stack.Screen name="BookMark" component={BookMarkScreen} />
-          <Stack.Screen name="HomeTabs" component={TabNavigation} options={{headerShown:false}} />
+          <Stack.Screen
+            name="HomeTabs"
+            component={TabNavigation}
+            options={{ headerShown: false }}
+          />
           <Stack.Screen
             name="NewsDetail"
             component={NewsDetailsScreen}
-            options={{ animation: "slide_from_bottom" ,headerShown:false}}
+            options={{ animation: "slide_from_bottom", headerShown: false }}
           />
-          <Stack.Screen name="NewsList" component={NewsList} options={{ headerShown: false}}/>
-          <Stack.Screen name="darkmode" component={DarkMode} options={{ headerShown: false}}/>
-          <Stack.Screen name="editprofile" component={EditProfile} options={{ headerShown: false}}/>
-          <Stack.Screen name="bookmark" component={BookMarkScreen} options={{ headerShown: false}}/>
-          <Stack.Screen name="language" component={Language} options={{ headerShown: false}}/>
+          <Stack.Screen
+            name="NewsList"
+            component={NewsList}
+            options={{ headerShown: false }}
+          />
+          <Stack.Screen
+            name="darkmode"
+            component={DarkMode}
+            options={{ headerShown: false }}
+          />
+          <Stack.Screen
+            name="editprofile"
+            component={EditProfile}
+            options={{ headerShown: false }}
+          />
+          <Stack.Screen
+            name="bookmark"
+            component={BookMarkScreen}
+            options={{ headerShown: false }}
+          />
+          <Stack.Screen
+            name="language"
+            component={Language}
+            options={{ headerShown: false }}
+          />
         </Stack.Navigator>
       </NavigationContainer>
     </DarkModeProvider>

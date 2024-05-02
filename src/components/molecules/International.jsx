@@ -5,41 +5,41 @@ import { TouchableOpacity } from "react-native";
 import { useNavigation } from "@react-navigation/native";
 import { DarkModeContext } from "../../context/DarkModeContext";
 
-const International = () => {
+const International = ({ data }) => {
   const { isDarkMode } = React.useContext(DarkModeContext);
 
   const navigate = useNavigation();
 
-  const data = [
-    {
-      title: "The best way to invest in stocks",
-      description:
-        "Stocks are a great way to invest your money. Here are some tips to get you started.",
-      image:
-        "https://thumbs.dreamstime.com/b/paris-eiffel-tower-river-seine-sunset-france-one-most-iconic-landmarks-107376702.jpg",
-    },
-    {
-      title: "The best way to invest in stocks",
-      description:
-        "Stocks are a great way to invest your money. Here are some tips to get you started.",
-      image:
-        "https://thumbs.dreamstime.com/b/paris-eiffel-tower-river-seine-sunset-france-one-most-iconic-landmarks-107376702.jpg",
-    },
-    {
-      title: "The best way to invest in stocks",
-      description:
-        "Stocks are a great way to invest your money. Here are some tips to get you started.",
-      image:
-        "https://thumbs.dreamstime.com/b/paris-eiffel-tower-river-seine-sunset-france-one-most-iconic-landmarks-107376702.jpg",
-    },
-    {
-      title: "The best way to invest in stocks",
-      description:
-        "Stocks are a great way to invest your money. Here are some tips to get you started.",
-      image:
-        "https://thumbs.dreamstime.com/b/paris-eiffel-tower-river-seine-sunset-france-one-most-iconic-landmarks-107376702.jpg",
-    },
-  ];
+  // const data = [
+  //   {
+  //     title: "The best way to invest in stocks",
+  //     description:
+  //       "Stocks are a great way to invest your money. Here are some tips to get you started.",
+  //     image:
+  //       "https://thumbs.dreamstime.com/b/paris-eiffel-tower-river-seine-sunset-france-one-most-iconic-landmarks-107376702.jpg",
+  //   },
+  //   {
+  //     title: "The best way to invest in stocks",
+  //     description:
+  //       "Stocks are a great way to invest your money. Here are some tips to get you started.",
+  //     image:
+  //       "https://thumbs.dreamstime.com/b/paris-eiffel-tower-river-seine-sunset-france-one-most-iconic-landmarks-107376702.jpg",
+  //   },
+  //   {
+  //     title: "The best way to invest in stocks",
+  //     description:
+  //       "Stocks are a great way to invest your money. Here are some tips to get you started.",
+  //     image:
+  //       "https://thumbs.dreamstime.com/b/paris-eiffel-tower-river-seine-sunset-france-one-most-iconic-landmarks-107376702.jpg",
+  //   },
+  //   {
+  //     title: "The best way to invest in stocks",
+  //     description:
+  //       "Stocks are a great way to invest your money. Here are some tips to get you started.",
+  //     image:
+  //       "https://thumbs.dreamstime.com/b/paris-eiffel-tower-river-seine-sunset-france-one-most-iconic-landmarks-107376702.jpg",
+  //   },
+  // ];
   return (
     <View className="px-3">
       <View className="flex-row justify-between items-center">
@@ -62,7 +62,7 @@ const International = () => {
         </TouchableOpacity>
       </View>
       <View className="py-3">
-        <NewsCard data={data} />
+        <NewsCard data={data?.slice(4, 8)} />
       </View>
     </View>
   );

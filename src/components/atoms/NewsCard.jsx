@@ -8,12 +8,12 @@ const NewsCard = ({ data }) => {
 
   const navigate = useNavigation();
   const RenderItem = ({ item }) => (
-    <TouchableOpacity onPress={() => navigate.navigate("NewsDetail")}>
+    <TouchableOpacity onPress={() => navigate.navigate("NewsDetail", { newsItem: item })}>
       <View className="my-2 w-full  ">
         <View className="flex-row gap-2    ">
           <Image
             className="h-28 w-28 rounded-md"
-            source={{ uri: item.image }}
+            source={{ uri: item.urlToImage }}
           />
           <View className=" w-[64vw] ">
             <Text numberOfLines={2} className={`text-lg ${isDarkMode==="dark"?"text-white/70":"text-black"}`}>

@@ -13,12 +13,12 @@ const UserDetail = () => {
           <Image
             className="h-[100%] w-[100%] object-fill rounded-full "
             source={{
-              uri: "https://letsenhance.io/static/8f5e523ee6b2479e26ecc91b9c25261e/1015f/MainAfter.jpg",
+              uri: "https://as1.ftcdn.net/v2/jpg/03/53/11/00/1000_F_353110097_nbpmfn9iHlxef4EDIhXB1tdTD0lcWhG9.jpg",
             }}
           />
         </View>
       </View>
-      <Text
+      {/* <Text
         className={` text-center text-2xl pt-3 font-medium ${
           isDarkMode === "dark" ? "text-white/70" : "text-black"
         }`}
@@ -31,13 +31,13 @@ const UserDetail = () => {
         }`}
       >
         subarna.sutar@squbix.com
-      </Text>
+      </Text> */}
       <View className="flex-row justify-center py-5">
         <TouchableOpacity
-          onPress={() => navigate.navigate("editprofile")}
+        // onPress={() => navigate.navigate("editprofile")}
         >
           <Text className="w-[45vw] py-3  rounded-3xl bg-red-500 text-white text-center text-xl">
-            Edit Profile
+            Login
           </Text>
         </TouchableOpacity>
       </View>

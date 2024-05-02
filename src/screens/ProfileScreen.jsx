@@ -24,12 +24,12 @@ const ProfileScreen = () => {
         <TouchableOpacity onPress={() => navigate.navigate("darkmode")}>
           <Btn icon="moon" title="Dark Mode" />
         </TouchableOpacity>
-        <TouchableOpacity onPress={() => navigate.navigate("language")}>
+        <TouchableOpacity>
 
         <Btn icon="file-text" title="Language" />
         </TouchableOpacity>
-        <Btn icon="key" title="Change Password" />
-        <Btn icon="log-out" title="Logout" />
+        {/* <Btn icon="key" title="Change Password" /> */}
+        {/* <Btn icon="log-out" title="Logout" /> */}
       </View>
     </View>
   );

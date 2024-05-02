@@ -9,6 +9,7 @@ import {
   View,
   Button,
   ScrollView,
+  FlatList,
 } from "react-native";
 import React, { useEffect, useRef, useState } from "react";
 import { Feather } from "@expo/vector-icons";
@@ -21,7 +22,8 @@ import international from "../../assets/SearchImage/international.jpg";
 import national from "../../assets/SearchImage/national.jpg";
 import technology from "../../assets/SearchImage/technology.jpg";
 import trending from "../../assets/SearchImage/trending.jpg";
-
+import axios from "axios";
+import { useNavigation } from "@react-navigation/native";
 const PingImage = ({ style, ...props }) => {
   const scale = useRef(new Animated.Value(0.9)).current;
 
@@ -60,15 +62,23 @@ const SearchScreen = () => {
   const [query, setQuery] = useState("");
   // const [isRecording, setIsRecording] = useState(false);
   const [showResults, setShowResults] = useState(false);
+  const [searchResults, setSearchResults] = useState([]);
   const { isDarkMode } = React.useContext(DarkModeContext);
-
-  const handleSearch = () => {
-    if (query.trim() === "") {
-      // The search bar is empty, return early
-      return;
+  const navigate = useNavigation();
+  const handleSearch = async () => {
+    try {
+      if (query.trim() === "") {
+        return;
+      }
+      const res = await axios.get(
+        `https://newsapi.org/v2/everything?q=${query}&apiKey=615607a761f14650b30bbd7f73bc53cc`
+      );
+      setSearchResults(res?.data?.articles);
+      // Speech.speak(query);
+      setShowResults(true);
+    } catch (error) {
+      console.warn(error, "Error in Search Result");
     }
-    // Speech.speak(query);
-    setShowResults(true);
   };
 
   const handleSpeech = () => {
@@ -115,14 +125,20 @@ const SearchScreen = () => {
       </View>
 
       {showResults ? (
-        <View>
-          <Text
-            className={`text-2xl text-center py-10 ${
+        <View className='pt-3'>
+          {/* <Text
+            className={`text-xl text-center py-4 ${
               isDarkMode === "dark" ? "text-white/70" : ""
             } `}
           >
             Search Results for {query}
-          </Text>
+          </Text> */}
+          <FlatList
+            showsVerticalScrollIndicator={false}
+            data={searchResults}
+            renderItem={({ item }) => <RenderItem item={item} />}
+            keyExtractor={(item) => item.id}
+          />
         </View>
       ) : (
         <View className="relative  h-[100%] ">
@@ -167,5 +183,41 @@ const SearchScreen = () => {
     </View>
   );
 };
+const RenderItem = ({ item }) => {
+  const navigate = useNavigation();
+  const { isDarkMode } = React.useContext(DarkModeContext);
 
+  return (
+    <TouchableOpacity
+      onPress={() => navigate.navigate("NewsDetail", { newsItem: item })}
+    >
+      <View className="my-2 w-full  ">
+        <View className="flex-row gap-2    ">
+          <Image
+            className="h-28 w-28 rounded-md"
+            source={{ uri: item.urlToImage }}
+          />
+          <View className=" w-[64vw] ">
+            <Text
+              numberOfLines={2}
+              className={`text-xl  ${
+                isDarkMode === "dark" ? "text-white/70" : "text-black"
+              }`}
+            >
+              {item.title}
+            </Text>
+            <Text
+              className={`py-2 text-sm ${
+                isDarkMode === "dark" ? "text-white/70" : "text-black"
+              } `}
+              numberOfLines={2}
+            >
+              {item.description}
+            </Text>
+          </View>
+        </View>
+      </View>
+    </TouchableOpacity>
+  );
+};
 export default SearchScreen;

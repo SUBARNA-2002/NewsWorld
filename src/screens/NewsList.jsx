@@ -34,6 +34,7 @@ const NewsList = ({ route }) => {
         <Text></Text>
       </View>
       <FlatList
+      showsVerticalScrollIndicator={false}
         data={data}
         renderItem={({ item }) => <RenderItem item={item} />}
         keyExtractor={(item) => item.id}
@@ -46,12 +47,12 @@ const RenderItem = ({ item }) => {
   const { isDarkMode } = React.useContext(DarkModeContext);
 
   return (
-    <TouchableOpacity onPress={() => navigate.navigate("NewsDetail")}>
+    <TouchableOpacity onPress={() => navigate.navigate("NewsDetail", { newsItem: item })}>
       <View className="my-2 w-full  ">
         <View className="flex-row gap-2    ">
           <Image
             className="h-28 w-28 rounded-md"
-            source={{ uri: item.image }}
+            source={{ uri: item.urlToImage }}
           />
           <View className=" w-[64vw] ">
             <Text

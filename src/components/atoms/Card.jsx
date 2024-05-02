@@ -18,11 +18,11 @@ const Card = ({ data }) => {
     const navigate = useNavigation();
     // console.log("item====>>>>", item);
     return (
-      <TouchableOpacity onPress={() => navigate.navigate("NewsDetail")}>
-        <View className="w-[50vw] h-[37vh]  p-1 ">
+      <TouchableOpacity onPress={() => navigate.navigate("NewsDetail", { newsItem: item })}>
+      <View className="w-[50vw] h-[28vh]  p-1 ">
           <Image
             className="h-[20vh] w-[100%] object-fill rounded-md"
-            source={{ uri: item.image }}
+            source={{ uri: item.urlToImage }}
           />
 
           <Text numberOfLines={2} className={`text-md py-1 ${isDarkMode==="dark"?"text-white/70":"text-black"}`}>

@@ -1,5 +1,5 @@
 {
-  "name": "newsapp",
+  "name": "NewsWorld",
   "version": "1.0.0",
   "main": "node_modules/expo/AppEntry.js",
   "scripts": {
@@ -19,6 +19,7 @@
     "@tanstack/react-query": "^5.24.1",
     "axios": "^1.6.7",
     "expo": "~50.0.8",
+    "expo-av": "~13.10.6",
     "expo-dev-client": "^3.3.8",
     "expo-font": "^11.10.3",
     "expo-linear-gradient": "^12.7.2",
@@ -36,7 +37,8 @@
     "react-native-snap-carousel": "^3.9.1",
     "react-native-tts": "^4.1.0",
     "react-native-vector-icons": "^10.0.3",
-    "react-native-webview": "13.6.4"
+    "react-native-webview": "13.6.4",
+    "react-native-youtube-iframe": "^2.3.0"
   },
   "devDependencies": {
     "@babel/core": "^7.20.0",
