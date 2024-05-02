@@ -10,7 +10,7 @@ import {
 import axios from "axios";
 import YoutubePlayer from "react-native-youtube-iframe";
 import { StatusBar } from "expo-status-bar";
-
+import { YOUTUBE_API_KEY } from "../../key";
 const VideoScreen = () => {
   const [videosData, setVideosData] = useState([]);
   const [currentVideoId, setCurrentVideoId] = useState(null);
@@ -20,7 +20,7 @@ const VideoScreen = () => {
     const fetchVideos = async () => {
       try {
         const res = await axios.get(
-          "https://www.googleapis.com/youtube/v3/search?part=snippet&channelId=UCupvZG-5ko_eiXAupbDfxWw&maxResults=25&key=AIzaSyDMIr8RGH3ujPBWZctlKpTehObtio7_6jM"
+          `https://www.googleapis.com/youtube/v3/search?part=snippet&channelId=UCupvZG-5ko_eiXAupbDfxWw&maxResults=25&key=${YOUTUBE_API_KEY}`
         );
         setVideosData(res?.data?.items);
         setCurrentVideoId(res?.data?.items[0]?.id?.videoId);
@@ -58,8 +58,12 @@ const VideoScreen = () => {
               source={{ uri: video.snippet.thumbnails.default.url }}
             />
             <View style={styles.titleContainer}>
-              <Text className='text-base font-semibold'>{video.snippet.title}</Text>
-              <Text numberOfLines={3} className='pt-2'>{video.snippet.description}</Text>
+              <Text className="text-base font-semibold">
+                {video.snippet.title}
+              </Text>
+              <Text numberOfLines={3} className="pt-2">
+                {video.snippet.description}
+              </Text>
             </View>
           </TouchableOpacity>
         ))}
@@ -71,7 +75,7 @@ const VideoScreen = () => {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-     backgroundColor: "#d4d9de",
+    backgroundColor: "#d4d9de",
   },
   playerContainer: {
     // flex-

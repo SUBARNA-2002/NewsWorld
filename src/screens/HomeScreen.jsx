@@ -15,6 +15,7 @@ import TrendingNews from "../components/molecules/TrendingNews";
 import International from "../components/molecules/International";
 import State from "../components/molecules/State";
 import { DarkModeContext } from "../context/DarkModeContext";
+import { NEWS_API_KEY } from "../../key";
 import axios from "axios";
 const HomeScreen = () => {
   // const { isDarkMode } = route.params;
@@ -30,7 +31,7 @@ const HomeScreen = () => {
     try {
       setLoader(true);
       const res = await axios.get(
-        "https://newsapi.org/v2/top-headlines?country=in&apiKey=615607a761f14650b30bbd7f73bc53cc"
+        `https://newsapi.org/v2/top-headlines?country=in&apiKey=${NEWS_API_KEY}`
       );
       if (res?.data?.articles) {
         setNewsData(res?.data?.articles);
@@ -44,7 +45,7 @@ const HomeScreen = () => {
   const getInternationalNewsData = async () => {
     try {
       const res = await axios.get(
-        "https://newsapi.org/v2/everything?q=international&apiKey=615607a761f14650b30bbd7f73bc53cc"
+        `https://newsapi.org/v2/everything?q=international&apiKey=${NEWS_API_KEY}`
       );
       setinternationalNews(res?.data?.articles);
     } catch (e) {
@@ -55,7 +56,7 @@ const HomeScreen = () => {
   const getStateNewsData = async () => {
     try {
       const res = await axios.get(
-        "https://newsapi.org/v2/everything?q=state&apiKey=615607a761f14650b30bbd7f73bc53cc"
+        `https://newsapi.org/v2/everything?q=state&apiKey=${NEWS_API_KEY}`
       );
       setStateNews(res?.data?.articles);
     } catch (e) {
